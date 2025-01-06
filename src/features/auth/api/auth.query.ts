@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import type { LoginDTO, RegisterDTO } from "../types";
+import type { LoginDTO, RegisterDTO, User } from "../types";
 import { authApi } from "./authApi";
 
 export const authQueryKeys = {
@@ -56,8 +56,6 @@ export const useLogout = () => {
   });
 };
 
-
-
 export const useSessions = () => {
   return useQuery({
     queryKey: authQueryKeys.sessions,
@@ -72,6 +70,47 @@ export const useRevokeSession = () => {
     mutationFn: (sessionId: string) => authApi.revokeSession(sessionId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: authQueryKeys.sessions });
+    },
+  });
+};
+
+export const useUpdateProfile = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (userData: {
+      email?: string;
+      firstName?: string;
+      lastName?: string;
+    }) => authApi.updateProfile(userData),
+    onMutate: async (updates) => {
+      await queryClient.cancelQueries({ queryKey: authQueryKeys.user });
+      const previousUser = queryClient.getQueryData<User>(authQueryKeys.user);
+
+      // Optimistically update the cache with proper typing
+      queryClient.setQueryData<User | undefined>(
+        authQueryKeys.user,
+        (oldData) => {
+          if (!oldData) return oldData;
+          return {
+            ...oldData,
+            ...updates,
+          };
+        }
+      );
+
+      return { previousUser };
+    },
+    onError: (_error, _variables, context) => {
+      if (context?.previousUser) {
+        queryClient.setQueryData(authQueryKeys.user, context.previousUser);
+      }
+    },
+    onSuccess: (updatedUser) => {
+      queryClient.setQueryData(authQueryKeys.user, updatedUser);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: authQueryKeys.user });
     },
   });
 };

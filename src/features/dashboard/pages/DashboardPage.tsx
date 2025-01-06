@@ -1,15 +1,11 @@
-import { ModeToggle } from "@/components/mode-toggle";
-import { Button } from "@/components/ui/button";
+import { useAuth } from "@/features/auth/context/AuthContext";
+import AdminDashboard from "../components/AdminDashboard";
+import UserDashboard from "../components/UserDashboard";
 
 const DashboardPage = () => {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-      <ModeToggle />
-      <Button>Test</Button>
-      <p>Welcome to your dashboard!</p>
-    </div>
-  );
+  const { user } = useAuth();
+
+  return <>{user?.role === "admin" ? <AdminDashboard /> : <UserDashboard />}</>;
 };
 
 export default DashboardPage;

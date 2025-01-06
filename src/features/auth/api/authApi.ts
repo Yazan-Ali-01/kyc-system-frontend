@@ -102,7 +102,6 @@ export const authApi = {
     }
   },
 
-
   revokeSession: async (sessionId: string): Promise<void> => {
     try {
       const response = await fetch(
@@ -139,6 +138,31 @@ export const authApi = {
       }
       throw new AppError(
         (error as Error).message || "Token refresh failed",
+        500
+      );
+    }
+  },
+  updateProfile: async (userData: {
+    email?: string;
+    firstName?: string;
+    lastName?: string;
+  }): Promise<User> => {
+    try {
+      const response = await fetch(`${baseUrl}${authEndpoints.update}`, {
+        ...defaultOptions,
+        method: "PATCH",
+        body: JSON.stringify(userData),
+      });
+
+      console.log("hello");
+      return handleApiResponse<User>(response);
+    } catch (error) {
+      console.log("error", error);
+      if (error instanceof AppError) {
+        throw error;
+      }
+      throw new AppError(
+        (error as Error).message || "Profile update failed",
         500
       );
     }
