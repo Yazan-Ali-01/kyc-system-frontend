@@ -2,7 +2,7 @@
 
 A modern, responsive React application built with TypeScript for managing KYC (Know Your Customer) workflows. The application features role-based access control, real-time data updates, and comprehensive reporting capabilities.
 
-The application is deployed and accessible at: https://kyc-system-frontend-nxl2zsls9-yazanali01s-projects.vercel.app/
+The application is deployed and accessible at: https://kyc-system-frontend-git-main-yazanali01s-projects.vercel.app/login
 
 ## Features
 
