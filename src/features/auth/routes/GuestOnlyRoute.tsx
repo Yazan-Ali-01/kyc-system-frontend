@@ -1,11 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "@/features/auth/context/AuthContext";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 
 export const GuestOnlyRoute = () => {
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (isAuthenticated) {

@@ -4,6 +4,7 @@ import { ProtectedRoute } from "@/features/auth/routes/ProtectedRoute";
 import { RoleBasedRoute } from "@/features/auth/routes/RoleBasedRoute";
 import { GuestOnlyRoute } from "@/features/auth/routes/GuestOnlyRoute";
 import { AppErrorBoundary } from "@/components/ErrorBoundary/AppErrorBoundary";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 
 const Layout = lazy(() => import("@/components/Layout"));
 const LoginPage = lazy(() => import("@/features/auth/pages/LoginPage"));
@@ -21,7 +22,7 @@ const KycManagementPage = lazy(
 const ReportsPage = lazy(() => import("@/features/admin/pages/ReportsPage"));
 
 const LazyRoute = ({ children }: { children: React.ReactNode }) => (
-  <Suspense fallback={<p>loading...</p>}>
+  <Suspense fallback={<LoadingSpinner />}>
     <AppErrorBoundary>{children}</AppErrorBoundary>
   </Suspense>
 );

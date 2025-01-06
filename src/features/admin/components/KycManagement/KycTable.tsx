@@ -7,6 +7,7 @@ import { formatDistanceToNow } from "date-fns";
 import KycStatusBadge from "./KycStatusBadge";
 import { KycSubmission } from "@/features/dashboard/types/kyc.types";
 import EmptyState from "@/features/admin/components/KycManagement/KycEmptyState";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 
 interface KycTableProps {
   onViewDetails: (submission: KycSubmission) => void;
@@ -22,7 +23,7 @@ const KycTable = ({ onViewDetails }: KycTableProps) => {
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (error || !data) {

@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
 import { BrowserRouter } from "react-router-dom";
 import ThemeSwitcher from "@/components/theme-switcher";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,12 +28,12 @@ function App() {
         <BrowserRouter>
           <QueryClientProvider client={queryClient}>
             <AuthProvider>
-              <Suspense fallback={<p>loading...</p>}>
+              <Suspense fallback={<LoadingSpinner />}>
                 <div className="min-h-screen relative">
                   <div className="absolute top-4 right-4 z-50">
                     <ThemeSwitcher />
                   </div>
-                  <Suspense fallback={<p>loading...</p>}>
+                  <Suspense fallback={<LoadingSpinner />}>
                     <AppRoutes />
                   </Suspense>
                 </div>

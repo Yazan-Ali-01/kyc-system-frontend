@@ -1,3 +1,4 @@
+import LoadingSpinner from "@/components/ui/loading-spinner";
 import { useAuth } from "@/features/auth/context/AuthContext";
 import { lazy, Suspense } from "react";
 
@@ -11,7 +12,7 @@ const DashboardPage = () => {
   const { user } = useAuth();
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LoadingSpinner />}>
       {user?.role === "admin" ? <AdminDashboardPage /> : <UserDashboard />}
     </Suspense>
   );
