@@ -1,4 +1,4 @@
-// src/features/admin/types/admin.types.ts
+
 
 import { KycSubmission } from "@/features/dashboard/types/kyc.types";
 

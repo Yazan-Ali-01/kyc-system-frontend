@@ -2,7 +2,7 @@ import { useState } from "react";
 import KycTable from "../components/KycManagement/KycTable";
 import { KycSubmission } from "@/features/dashboard/types/kyc.types";
 import KycDetailsModal from "@/features/admin/components/KycManagement/KycDetailsModal";
-// import KycDetailsModal from "../components/KycManagement/KycDetailsModal";
+
 
 const KycManagementPage = () => {
   const [selectedSubmission, setSelectedSubmission] =

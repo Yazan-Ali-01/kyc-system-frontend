@@ -11,7 +11,7 @@ function generateFolderStructure(dir, result = '', depth = 0) {
     const stats = fs.statSync(filePath);
 
 
-    if (file !== '.git' && file !== 'node_modules') {
+    if (file !== '.git' && file !== 'node_modules' && file !== 'dist') {
       const indent = ' '.repeat(depth * 2); // Add indentation based on depth
       result += `${indent}${file}\n`; // Add the file/folder name to the result
 

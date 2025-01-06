@@ -1,4 +1,4 @@
-// src/features/admin/components/Reports/GeographyDistributionChart.tsx
+
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGeographicalDistribution } from "../../api/reports.query";
@@ -26,7 +26,7 @@ const GeographyDistributionChart = () => {
     );
   }
 
-  // Sort data by count in descending order and take top 10
+
   const sortedData = [...(data || [])]
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);

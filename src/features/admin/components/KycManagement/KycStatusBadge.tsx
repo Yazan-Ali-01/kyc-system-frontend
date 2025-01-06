@@ -1,4 +1,4 @@
-// src/features/admin/components/KycManagement/KycStatusBadge.tsx
+
 
 import { Badge } from "@/components/ui/badge";
 import { Clock, CheckCircle, XCircle } from "lucide-react";

@@ -3,6 +3,7 @@
 README.md
 components.json
 eslint.config.js
+folder_structure.txt
 generateStructure.cjs
 index.html
 package-lock.json
@@ -24,6 +25,7 @@ src
     theme-provider.tsx
     theme-switcher.tsx
     ui
+      alert-dialog.tsx
       alert.tsx
       badge.tsx
       button.tsx
@@ -45,10 +47,41 @@ src
       sonner.tsx
       switch.tsx
       tabs.tsx
+      textarea.tsx
   config
     env.d.ts
     environment.ts
   features
+    admin
+      api
+        reports.query.ts
+        reportsApi.ts
+      components
+        DashboardLayout.tsx
+        KycManagement
+          DocumentViewer.tsx
+          KycDetailsModal.tsx
+          KycEmptyState.tsx
+          KycStatusBadge.tsx
+          KycTable.tsx
+          StatusUpdateForm.tsx
+        Reports
+          CountryDistributionChart.tsx
+          DocumentTypeDistribution.tsx
+          GeographyDistributionChart.tsx
+          KycStatusTimeline.tsx
+          ProcessingTimeChart.tsx
+          StatsOverview.tsx
+        Stats
+          KycStatsCards.tsx
+          KycStatsCharts.tsx
+      pages
+        AdminDashboardPage.tsx
+        KycManagementPage.tsx
+        ReportsPage.tsx
+      types
+        admin.types.ts
+        reports.types.ts
     auth
       api
         auth.query.ts
@@ -73,7 +106,6 @@ src
         kyc.query.ts
         kycApi.ts
       components
-        AdminDashboard.tsx
         SubmitKycForm.tsx
         UserDashboard.tsx
       pages
@@ -83,6 +115,17 @@ src
     profile
       pages
         ProfilePage.tsx
+    src
+      features
+        admin
+          components
+            Reports
+              CountryDistributionChart.tsx
+              DocumentTypeDistribution.tsx
+              KycStatusTimeline.tsx
+              ProcessingTimeChart.tsx
+              StatsOverview.tsx
+            ReportsPage.tsx
   index.css
   lib
     utils.ts

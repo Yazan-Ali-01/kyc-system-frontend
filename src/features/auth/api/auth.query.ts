@@ -87,7 +87,7 @@ export const useUpdateProfile = () => {
       await queryClient.cancelQueries({ queryKey: authQueryKeys.user });
       const previousUser = queryClient.getQueryData<User>(authQueryKeys.user);
 
-      // Optimistically update the cache with proper typing
+
       queryClient.setQueryData<User | undefined>(
         authQueryKeys.user,
         (oldData) => {

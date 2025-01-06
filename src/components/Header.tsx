@@ -23,7 +23,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Define navigation links based on user role
+
   const navigationLinks = isAdmin
     ? [
         { to: "/dashboard", label: "Dashboard" },

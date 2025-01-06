@@ -14,7 +14,7 @@ export const AppErrorBoundary = ({ children }: AppErrorBoundaryProps) => {
       FallbackComponent={ErrorFallback}
       onReset={reset}
       onError={(error: unknown) => {
-        // Log to your error reporting service
+
         console.error("Error caught by boundary:", error);
       }}
     >

@@ -1,4 +1,4 @@
-// src/features/dashboard/api/kycApi.ts
+
 
 import { environment } from "@/config/environment";
 import { AppError, handleApiResponse } from "@/utils/error-utils";
@@ -31,19 +31,19 @@ export const kycApi = {
     try {
       const formData = new FormData();
 
-      // Append file
+
       formData.append("idDocument", data.idDocument);
 
-      // Type-safe way to append other fields
+
       const { idDocument: _, address, ...otherFields } = data;
 
-      // Append all other fields except address and idDocument
+
       Object.entries(otherFields).forEach(([key, value]) => {
-        // Convert all values to string before appending
+
         formData.append(key, String(value));
       });
 
-      // Append address fields
+
       Object.entries(address).forEach(([key, value]) => {
         formData.append(`address[${key}]`, String(value));
       });

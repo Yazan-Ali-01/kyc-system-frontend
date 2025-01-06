@@ -26,7 +26,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Switch } from "@/components/ui/switch";
 import { useRegister } from "@/features/auth/api/auth.query";
 
-// Define validation schema using Zod
+
 const formInputSchema = z
   .object({
     firstName: z
@@ -48,7 +48,7 @@ const formInputSchema = z
     path: ["confirmPassword"],
   });
 
-// Define the output schema (without confirmPassword)
+
 
 const formSchema = formInputSchema.transform((data) => {
   const { confirmPassword: _, ...rest } = data;

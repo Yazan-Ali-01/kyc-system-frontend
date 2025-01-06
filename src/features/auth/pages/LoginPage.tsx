@@ -25,18 +25,18 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../api/auth.query";
 
-// Define the form schema using Zod
+
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters long" }),
-  // .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+]{8,}$/, {
-  //   message: "Password must contain at least one letter and one number",
-  // }),
+
+
+
 });
 
-// Infer the type from the schema
+
 type FormValues = z.infer<typeof formSchema>;
 
 const LoginPage = () => {
@@ -70,7 +70,7 @@ const LoginPage = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Implement Google login logic here
+
     toast.info("Google login integration isn't ready in this assessment demo!");
   };
 

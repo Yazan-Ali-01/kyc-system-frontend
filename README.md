@@ -1,50 +1,213 @@
-# React + TypeScript + Vite
+# KYC System Frontend Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive React application built with TypeScript for managing KYC (Know Your Customer) workflows. The application features role-based access control, real-time data updates, and comprehensive reporting capabilities.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Authentication & Authorization
+- JWT-based authentication with automatic token refresh
+- Role-based access control (Admin/User)
+- Protected routes with role-based permissions
+- Unauthorized access handling
+- Guest-only routes for authentication pages
 
-## Expanding the ESLint configuration
+### User Dashboard
+- KYC submission status tracking
+- Document upload functionality
+- Status notifications and alerts
+- Interactive form validation
+- Submission history view
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Admin Features
+- KYC submission management
+- Document review interface
+- Comprehensive reporting dashboard
+- Status update workflow
+- Analytics visualization
 
-- Configure the top-level `parserOptions` property like this:
+### Core Technical Features
+- React Query for efficient data fetching and caching
+- Lazy loading and code splitting
+- Error boundary implementation
+- Theme switching (light/dark mode)
+- Responsive design
+- Type-safe development with TypeScript
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Architecture & Design Patterns
+
+### Project Structure
+```
+src/
+├── components/            # Shared UI components
+├── features/             # Feature-based organization
+│   ├── admin/           # Admin-specific features
+│   ├── auth/            # Authentication
+│   ├── dashboard/       # User dashboard
+│   └── profile/         # User profile
+├── config/              # Configuration files
+├── lib/                 # Utility functions
+├── routes/              # Route definitions
+└── utils/               # Helper functions
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Key Design Patterns
+- Feature-based architecture
+- Context-based state management
+- Render props pattern
+- Component composition
+- Custom hooks for reusable logic
+- Error boundary pattern
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Technical Stack
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **Core**: React 18, TypeScript
+- **Routing**: React Router 6
+- **State Management**: React Query, Context API
+- **UI Components**: Shadcn/UI
+- **Styling**: Tailwind CSS
+- **Form Handling**: React Hook Form
+- **Build Tool**: Vite
+- **Type Checking**: TypeScript
+
+## Technical Notes & Trade-offs
+
+Due to the assessment's time constraints (3 days), several features and improvements were identified for future implementation:
+
+**Implemented Features:**
+- Core authentication flow
+- Basic KYC submission workflow
+- Admin dashboard with essential features
+- Role-based access control
+- Theme switching capability
+
+**Future Improvements:**
+1. User Experience:
+   - Multi-step form for KYC submission
+   - Notes/comments section for submissions
+   - Advanced filtering and search capabilities
+   - Bulk action functionality
+   - Export features for data
+
+2. Real-time Features:
+   - WebSocket integration for live updates
+   - Recent activity feed
+   - Real-time alerts for pending reviews
+
+3. Code Quality:
+   - Query keys builder for consistency
+   - Debouncing for search inputs
+   - Dynamic form generation from JSON schema
+   - Enhanced error handling
+
+4. Performance:
+   - Advanced caching strategies
+   - Optimized bundle splitting
+   - Image optimization pipeline
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+
+## Setup Instructions
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Yazan-Ali-01/kyc-system-frontend
+   cd kyc-system-frontend
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Configuration:**
+   Create a `.env` file based on `.env.example`:
+   ```
+   VITE_API_URL=http://localhost:3000/api/v1
+VITE_SESSION_DURATION_HOURS=14
+VITE_REFRESH_TOKEN_INTERVAL_MINUTES=14
+   ```
+
+4. **Start Development Server:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Build for Production:**
+   ```bash
+   npm run build
+   npm run preview
+   ```
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Components Documentation
+
+The application uses a combination of custom components and Shadcn/UI components:
+
+### Custom Components
+- `ErrorBoundary` - Handles component-level errors
+- `Layout` - Main application layout
+- `AuthProvider` - Authentication context provider
+- `ThemeProvider` - Theme management
+
+### UI Components
+- Alerts
+- Badges
+- Buttons
+- Cards
+- Modals
+- Forms
+- Tables
+
+## Routing Structure
+
+- `/` → Dashboard
+- `/login` → Login page (guest only)
+- `/register` → Registration page (guest only)
+- `/dashboard` → User dashboard
+- `/profile` → User profile
+- `/admin/*` → Admin routes
+  - `/admin/kyc-reviews` → KYC management
+  - `/admin/reports` → Analytics dashboard
+
+## Security Considerations
+
+- Protected routes implementation
+- Token-based authentication
+- Secure cookie handling
+- Input sanitization
+
+## Error Handling
+
+- Global error boundary
+- API error handling
+- Form validation errors
+- Network error handling
+- Fallback UI components
+
+## Monitoring & Debugging
+
+- React Query DevTools integration
+- Performance monitoring
+- Error logging
+- API request tracking
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License.

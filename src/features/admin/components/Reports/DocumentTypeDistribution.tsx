@@ -1,4 +1,4 @@
-// src/features/admin/components/Reports/DocumentDistributionChart.tsx
+
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useDocumentDistribution } from "../../api/reports.query";
