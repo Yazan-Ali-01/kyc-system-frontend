@@ -110,6 +110,9 @@ Due to the assessment's time constraints (3 days), several features and improvem
    - Debouncing for search inputs
    - Dynamic form generation from JSON schema
    - Enhanced error handling
+   - Implement component testing using React Testing Library for UI components
+   - Add end-to-end testing with Cypress or Playwright for critical user flows
+
 
 4. Performance:
    - Advanced caching strategies
