@@ -61,6 +61,15 @@ src/
 - Custom hooks for reusable logic
 - Error boundary pattern
 
+### Query Cache Management
+The current implementation relies primarily on time-based cache invalidation through React Query's built-in intervals. While this provides basic functionality, it lacks sophisticated cache invalidation strategies that would be beneficial in a production environment. Due to time constraints, several important cache management features were not implemented, including:
+
+- Mutation-based cache invalidation for immediate updates after data changes
+- Selective cache invalidation based on business rules and data dependencies
+- Optimistic updates for improved user experience
+- Cache persistence strategies for offline capability
+- Cross-tab cache synchronization
+
 ## Technical Stack
 
 - **Core**: React 18, TypeScript
