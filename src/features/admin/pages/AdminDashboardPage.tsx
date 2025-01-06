@@ -1,7 +1,7 @@
 import KycStatsCards from "../components/Stats/KycStatsCards";
 import KycStatsCharts from "../components/Stats/KycStatsCharts";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle, Loader2 } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 import { useOverviewStats } from "@/features/admin/api/reports.query";
 import LoadingSpinner from "@/components/ui/loading-spinner";
 
