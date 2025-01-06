@@ -26,7 +26,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Switch } from "@/components/ui/switch";
 import { useRegister } from "@/features/auth/api/auth.query";
 
-
 const formInputSchema = z
   .object({
     firstName: z
@@ -38,8 +37,14 @@ const formInputSchema = z
     email: z.string().email({ message: "Invalid email address" }),
     password: z
       .string()
-      .min(6, { message: "Password must be at least 6 characters long" })
-      .regex(/[a-zA-Z0-9]/, { message: "Password must be alphanumeric" }),
+      .min(8, { message: "Password must be at least 8 characters long" })
+      .regex(/^[a-zA-Z0-9]+$/, {
+        message: "Password must contain only letters and numbers",
+      })
+      .refine(
+        (password) => /[a-zA-Z]/.test(password) && /[0-9]/.test(password),
+        { message: "Password must contain both letters and numbers" }
+      ),
     confirmPassword: z.string(),
     role: z.enum(["admin", "user"]).default("user"),
   })
@@ -47,8 +52,6 @@ const formInputSchema = z
     message: "Passwords don't match",
     path: ["confirmPassword"],
   });
-
-
 
 const formSchema = formInputSchema.transform((data) => {
   const { confirmPassword: _, ...rest } = data;
@@ -69,6 +72,7 @@ export default function RegisterPage() {
       confirmPassword: "",
       role: "user",
     },
+    mode: "onChange",
   });
   const { mutate: register, isPending } = useRegister();
 
@@ -232,7 +236,11 @@ export default function RegisterPage() {
                   )}
                 />
 
-                <Button type="submit" disabled={isPending} className="w-full">
+                <Button
+                  type="submit"
+                  disabled={isPending || !form.formState.isValid}
+                  className="w-full"
+                >
                   {isPending ? "Registering..." : "Register"}
                 </Button>
               </div>
