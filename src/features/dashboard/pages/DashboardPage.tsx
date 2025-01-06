@@ -1,13 +1,19 @@
 import { useAuth } from "@/features/auth/context/AuthContext";
-import UserDashboard from "../components/UserDashboard";
-import AdminDashboardPage from "@/features/admin/pages/AdminDashboardPage";
+import { lazy, Suspense } from "react";
+
+// Lazy load both components
+const UserDashboard = lazy(() => import("../components/UserDashboard"));
+const AdminDashboardPage = lazy(
+  () => import("@/features/admin/pages/AdminDashboardPage")
+);
 
 const DashboardPage = () => {
   const { user } = useAuth();
 
-  console.log("user?.role", user?.role);
   return (
-    <>{user?.role === "admin" ? <AdminDashboardPage /> : <UserDashboard />}</>
+    <Suspense fallback={<div>Loading...</div>}>
+      {user?.role === "admin" ? <AdminDashboardPage /> : <UserDashboard />}
+    </Suspense>
   );
 };
 

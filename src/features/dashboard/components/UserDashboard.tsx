@@ -129,6 +129,22 @@ const UserDashboard = () => {
         </div>
       )}
 
+      {/* Submission Form */}
+      {showSubmissionForm && canSubmitNewKyc && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Submit KYC Documentation</CardTitle>
+            <p className="text-sm text-gray-500">
+              Please provide your identification details and documentation for
+              verification.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <SubmitKycForm />
+          </CardContent>
+        </Card>
+      )}
+
       {/* Status Overview */}
       <Card className="bg-accent">
         <CardHeader>
@@ -149,22 +165,6 @@ const UserDashboard = () => {
           )}
         </CardContent>
       </Card>
-
-      {/* Submission Form */}
-      {showSubmissionForm && canSubmitNewKyc && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Submit KYC Documentation</CardTitle>
-            <p className="text-sm text-gray-500">
-              Please provide your identification details and documentation for
-              verification.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <SubmitKycForm />
-          </CardContent>
-        </Card>
-      )}
 
       {/* Current Submission Details */}
       {kycDetails && (

@@ -37,7 +37,6 @@ const KycDetailsModal = ({ submission, onClose }: KycDetailsModalProps) => {
   const [showRejectDialog, setShowRejectDialog] = useState(false);
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [rejectionReason, setRejectionReason] = useState("");
-  const [imageError, setImageError] = useState(false);
   const updateStatusMutation = useUpdateKycStatus();
 
   const handleApprove = async () => {
