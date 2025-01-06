@@ -1,8 +1,5 @@
-
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useDocumentDistribution } from "../../api/reports.query";
-import { Loader2 } from "lucide-react";
 import {
   BarChart,
   Bar,
@@ -12,18 +9,13 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 
 const DocumentDistributionChart = () => {
   const { data, isLoading } = useDocumentDistribution();
 
   if (isLoading) {
-    return (
-      <Card>
-        <CardContent className="flex items-center justify-center h-[400px]">
-          <Loader2 className="h-8 w-8 animate-spin" />
-        </CardContent>
-      </Card>
-    );
+    return <LoadingSpinner />;
   }
 
   const formatDocumentType = (type: string) => {

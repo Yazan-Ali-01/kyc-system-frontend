@@ -1,19 +1,14 @@
-
-
 import KycStatsCards from "../components/Stats/KycStatsCards";
 import KycStatsCharts from "../components/Stats/KycStatsCharts";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, Loader2 } from "lucide-react";
 import { useOverviewStats } from "@/features/admin/api/reports.query";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 
 const AdminDashboardPage = () => {
   const { data: stats, isLoading, isError, error } = useOverviewStats();
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-8 w-8 animate-spin" />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {

@@ -7,6 +7,7 @@ import { AlertCircle, CheckCircle, Clock, Plus, Loader2 } from "lucide-react";
 import SubmitKycForm from "./SubmitKycForm";
 import { useKycDetails } from "../api/kyc.query";
 import { YazanCarousel } from "@/components/YazanCarousel";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 
 const UserDashboard = () => {
   const [showSubmissionForm, setShowSubmissionForm] = useState(false);
@@ -78,11 +79,7 @@ const UserDashboard = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-8 w-8 animate-spin" />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {
