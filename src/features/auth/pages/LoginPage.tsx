@@ -25,17 +25,12 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../api/auth.query";
 
-
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters long" }),
-
-
-
 });
-
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -70,7 +65,6 @@ const LoginPage = () => {
   };
 
   const handleGoogleLogin = () => {
-
     toast.info("Google login integration isn't ready in this assessment demo!");
   };
 
@@ -136,7 +130,7 @@ const LoginPage = () => {
                   variant="outline"
                   className="w-full"
                   onClick={handleGoogleLogin}
-                  disabled={isPending}
+                  disabled={isPending || !form.formState.isValid}
                 >
                   Login with Google
                 </Button>
