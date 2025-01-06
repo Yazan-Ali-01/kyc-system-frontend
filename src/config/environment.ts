@@ -12,18 +12,30 @@ export const environment = {
         logout: "/auth/logout",
         refresh: "/auth/refresh",
         sessions: "/auth/sessions",
+        update: "/auth/update",
+      },
+      kyc: {
+        submit: "/kyc/submit",
+        details: "/kyc",
+        pending: "/kyc/pending",
+        stats: "/kyc/stats",
+      },
+      reports: {
+        overview: "/reports/overview",
+        timeline: "/reports/timeline",
+        documents: "/reports/documents",
+        geography: "/reports/geography",
+        processingTime: "/reports/processing-time",
       },
     },
   },
 
   auth: {
-    // Session duration in milliseconds (14 hours)
     sessionDurationMs:
       Number(import.meta.env.VITE_SESSION_DURATION_HOURS) *
       MINUTES_IN_HOUR *
       MILLISECONDS_IN_MINUTE,
 
-    // Refresh token interval in milliseconds (30 minutes)
     refreshTokenIntervalMs:
       Number(import.meta.env.VITE_REFRESH_TOKEN_INTERVAL_MINUTES) *
       MILLISECONDS_IN_MINUTE,

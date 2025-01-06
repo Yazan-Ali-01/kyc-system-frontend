@@ -1,0 +1,99 @@
+.env
+.gitignore
+README.md
+components.json
+eslint.config.js
+generateStructure.cjs
+index.html
+package-lock.json
+package.json
+postcss.config.js
+public
+  logo.jpeg
+src
+  App.tsx
+  assets
+  components
+    ErrorBoundary
+      AppErrorBoundary.tsx
+      ErrorFallback.tsx
+    Header.tsx
+    Layout.tsx
+    YazanCarousel.tsx
+    YazanDock.tsx
+    theme-provider.tsx
+    theme-switcher.tsx
+    ui
+      alert.tsx
+      badge.tsx
+      button.tsx
+      calendar.tsx
+      card.tsx
+      collapsible.tsx
+      dock.tsx
+      dot-pattern.tsx
+      dropdown-menu.tsx
+      file-upload.tsx
+      form.tsx
+      gradient-heading.tsx
+      input.tsx
+      label.tsx
+      logo-carousel.tsx
+      password-input.tsx
+      popover.tsx
+      select.tsx
+      sonner.tsx
+      switch.tsx
+      tabs.tsx
+  config
+    env.d.ts
+    environment.ts
+  features
+    auth
+      api
+        auth.query.ts
+        authApi.ts
+      components
+      context
+        AuthContext.tsx
+      hooks
+      pages
+        LoginPage.tsx
+        RegisterPage.tsx
+        UnauthorizedPage.tsx
+      routes
+        GuestOnlyRoute.tsx
+        ProtectedRoute.tsx
+        RoleBasedRoute.tsx
+      types
+        api.types.ts
+        index.ts
+    dashboard
+      api
+        kyc.query.ts
+        kycApi.ts
+      components
+        AdminDashboard.tsx
+        SubmitKycForm.tsx
+        UserDashboard.tsx
+      pages
+        DashboardPage.tsx
+      types
+        kyc.types.ts
+    profile
+      pages
+        ProfilePage.tsx
+  index.css
+  lib
+    utils.ts
+  main.tsx
+  routes
+    index.tsx
+  utils
+    error-utils.ts
+  vite-env.d.ts
+tailwind.config.js
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+vite.config.ts

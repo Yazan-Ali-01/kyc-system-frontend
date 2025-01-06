@@ -99,10 +99,9 @@ export default function SubmitKycForm() {
     }
 
     try {
-      // Create submission data with File object
       const submissionData = {
         ...values,
-        idDocument: files[0], // Use the actual File object
+        idDocument: files[0],
       };
 
       await submitKyc.mutateAsync(submissionData);

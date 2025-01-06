@@ -1,5 +1,3 @@
-// src/features/dashboard/types/kyc.types.ts
-
 export type AddressDTO = {
   street: string;
   city: string;
@@ -20,26 +18,36 @@ export type KycSubmissionDTO = {
 
 export type KycStatus = "pending" | "approved" | "rejected";
 
+interface IdDocumentFile {
+  fileName: string;
+  fileType: string;
+  filePath: string;
+  uploadDate: string;
+}
+
 export type KycSubmission = {
-  id: string;
+  _id: string;
   userId: string;
   firstName: string;
   lastName: string;
   dateOfBirth: string;
   address: AddressDTO;
-  idDocumentType: "passport" | "nationalId" | "drivingLicense";
+  idDocumentType: string;
   idDocumentNumber: string;
-  status: KycStatus;
-  submittedAt: string;
+  idDocumentFile: IdDocumentFile;
+  status: "approved" | "rejected" | "pending";
+  rejectionReason: string;
+  submissionDate: string;
+  lastUpdated: string;
+  createdAt: string;
   updatedAt: string;
-  rejectionReason?: string;
 };
 
 export type KycStats = {
-  totalUsers: number;
-  pendingSubmissions: number;
-  approvedSubmissions: number;
-  rejectedSubmissions: number;
+  total: number;
+  pending: number;
+  approved: number;
+  rejected: number;
 };
 
 export type UpdateKycStatusDTO = {

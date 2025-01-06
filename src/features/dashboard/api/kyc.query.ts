@@ -50,10 +50,3 @@ export const useUpdateKycStatus = () => {
     },
   });
 };
-
-export const useKycStats = () => {
-  return useQuery({
-    queryKey: kycQueryKeys.stats,
-    queryFn: () => kycApi.getKycStats(),
-  });
-};

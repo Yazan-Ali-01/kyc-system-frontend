@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     queryFn: () => authApi.getCurrentUser(),
     retry: 1,
     staleTime: Infinity,
+    refetchInterval: 1000 * 60 * 60,
     gcTime: Infinity,
     refetchOnMount: true,
     refetchOnWindowFocus: false,

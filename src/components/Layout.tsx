@@ -1,31 +1,21 @@
-import { Link, Outlet } from "react-router-dom";
-import { useLogout } from "@/features/auth/api/auth.query";
+import { Outlet } from "react-router-dom";
 import { AppErrorBoundary } from "./ErrorBoundary/AppErrorBoundary";
+import { Header } from "@/components/Header";
+import { YazanDock } from "@/components/YazanDock";
 
 const Layout = () => {
-  const { mutate: logout } = useLogout();
-
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <button onClick={() => logout()}>Logout</button>
-          </li>
-        </ul>
-      </nav>
-      <main>
+    <>
+      <Header />
+      <main className="pt-24">
         <AppErrorBoundary>
           <Outlet />
         </AppErrorBoundary>
       </main>
-    </div>
+      <footer className="mb-8">
+        <YazanDock />
+      </footer>
+    </>
   );
 };
 

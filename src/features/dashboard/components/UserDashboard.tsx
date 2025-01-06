@@ -31,8 +31,9 @@ const UserDashboard = () => {
             </div>
             <AlertDescription>
               Your KYC submission from{" "}
-              {new Date(kycDetails.submittedAt).toLocaleDateString()} is being
-              reviewed. We'll notify you once the verification is complete.
+              {new Date(kycDetails.submissionDate).toLocaleDateString()} is
+              being reviewed. We'll notify you once the verification is
+              complete.
             </AlertDescription>
           </Alert>
         );
@@ -197,7 +198,7 @@ const UserDashboard = () => {
               <div>
                 <p className="text-sm text-gray-500">Submission Date</p>
                 <p className="font-medium">
-                  {new Date(kycDetails.submittedAt).toLocaleDateString()}
+                  {new Date(kycDetails.submissionDate).toLocaleDateString()}
                 </p>
               </div>
               <div>

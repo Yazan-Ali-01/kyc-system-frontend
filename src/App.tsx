@@ -5,14 +5,15 @@ import { AppErrorBoundary } from "@/components/ErrorBoundary/AppErrorBoundary";
 import { Suspense } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
-import { ModeToggle } from "@/components/mode-toggle";
 import { BrowserRouter } from "react-router-dom";
+import ThemeSwitcher from "@/components/theme-switcher";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 1,
-      staleTime: 5 * 60 * 1000, // 5 minutes
+      staleTime: 5 * 60 * 1000,
+      refetchInterval: 30 * 1000,
       refetchOnWindowFocus: false,
       refetchOnMount: true,
     },
@@ -29,7 +30,7 @@ function App() {
               <Suspense fallback={<p>loading...</p>}>
                 <div className="min-h-screen relative">
                   <div className="absolute top-4 right-4 z-50">
-                    <ModeToggle />
+                    <ThemeSwitcher />
                   </div>
                   <Suspense fallback={<p>loading...</p>}>
                     <AppRoutes />
@@ -37,6 +38,7 @@ function App() {
                 </div>
               </Suspense>
             </AuthProvider>
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           </QueryClientProvider>
         </BrowserRouter>
         <Toaster />

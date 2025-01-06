@@ -3,11 +3,21 @@
 import { environment } from "@/config/environment";
 import { AppError, handleApiResponse } from "@/utils/error-utils";
 import {
-  KycStats,
   KycSubmission,
   KycSubmissionDTO,
   UpdateKycStatusDTO,
 } from "../types/kyc.types";
+
+interface PaginationData {
+  total: number;
+  page: number;
+  totalPages: number;
+}
+
+interface KycSubmissionsResponse {
+  submissions: KycSubmission[];
+  pagination: PaginationData;
+}
 
 const { baseUrl, endpoints } = environment.api;
 const { kyc: kycEndpoints } = endpoints;
@@ -77,7 +87,7 @@ export const kycApi = {
   getPendingSubmissions: async (
     page: number = 1,
     limit: number = 10
-  ): Promise<{ data: KycSubmission[]; total: number }> => {
+  ): Promise<KycSubmissionsResponse> => {
     try {
       const response = await fetch(
         `${baseUrl}${kycEndpoints.pending}?page=${page}&limit=${limit}`,
@@ -87,9 +97,7 @@ export const kycApi = {
         }
       );
 
-      return handleApiResponse<{ data: KycSubmission[]; total: number }>(
-        response
-      );
+      return handleApiResponse<KycSubmissionsResponse>(response);
     } catch (error) {
       if (error instanceof AppError) throw error;
       throw new AppError(
@@ -104,38 +112,18 @@ export const kycApi = {
     data: UpdateKycStatusDTO
   ): Promise<KycSubmission> => {
     try {
-      const response = await fetch(
-        `${baseUrl}${kycEndpoints.status}/${kycId}`,
-        {
-          ...defaultOptions,
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await fetch(`${baseUrl}/kyc/${kycId}/status`, {
+        ...defaultOptions,
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
       return handleApiResponse<KycSubmission>(response);
     } catch (error) {
       if (error instanceof AppError) throw error;
       throw new AppError(
         (error as Error).message || "Failed to update KYC status",
-        500
-      );
-    }
-  },
-
-  getKycStats: async (): Promise<KycStats> => {
-    try {
-      const response = await fetch(`${baseUrl}${kycEndpoints.stats}`, {
-        ...defaultOptions,
-        method: "GET",
-      });
-
-      return handleApiResponse<KycStats>(response);
-    } catch (error) {
-      if (error instanceof AppError) throw error;
-      throw new AppError(
-        (error as Error).message || "Failed to fetch KYC stats",
         500
       );
     }
